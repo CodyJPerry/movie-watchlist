@@ -8,11 +8,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!-- SETUP MARKUP STRUCTURE -->
-    <script src="js/app.js"></script>
-</body>
+    <body>
+        <div class="container">
+            <header class="section-header">
+                <h1 class="section-title">My Watchlist</h1>
+                <p class="section-watchlist">Search for movies</p>
+            </header>
+            <section class="watchlist-results">
+                <!-- Watchlist will get displayed here -->
+                <p class="watchlist-text">Your watchlist is looking a little empty...</p>
+                <p><i class="fa-solid fa-circle-plus fa-3x"></i> Let's add some movies!</p>
+            </section>
+        </div>
+        <script src="js/app.js"></script>
+    </body>
 </html>
