@@ -1,4 +1,11 @@
 /* General Styles */
+:root {
+    --background: #1C1C1C;
+    --primary-gray: #DFDDDD;
+    --secondary-gray: #c4c4c4;
+    --white: #ffffff;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -11,4 +18,62 @@ html {
 
 body {
     font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    background: var(--background)
+}
+
+.section-header {
+    background-image: url(../images/header_background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #0E0E0E;
+    padding: 8.5em 4.6em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Layout Styles */ 
+.container {
+    max-width: 55em;
+    width: 90%;
+    margin: 5em auto;
+    min-height: 100vh;
+}
+
+.section-results {
+    background: var(--primary-gray);
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Typography Styles */
+.section-title,
+.section-watchlist {
+    color: var(--white);
+}
+
+.section-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+}
+
+.section-watchlist {
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.fa-film-text {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--secondary-gray);
+    margin-top: 0.5em;
+}
+
+/* Icon Styling */
+.fa-film {
+    color: var(--secondary-gray)
 }
