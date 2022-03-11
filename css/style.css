@@ -3,6 +3,8 @@
     --background: #1C1C1C;
     --primary-gray: #DFDDDD;
     --secondary-gray: #c4c4c4;
+    --button-color: #374151;
+    --section-text: #363636;
     --white: #ffffff;
 }
 
@@ -61,6 +63,7 @@ body {
     width: 9em;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
+    color: var(--button-color);
 }
 
 .section-search input,
@@ -102,6 +105,13 @@ body {
     margin-top: 0.5em;
 }
 
+.section-text {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--section-text);
+    margin-top: 1.2em;
+}
+
 /* Icon Styling */
 .fa-film,
 .fa-magnifying-glass {
@@ -112,4 +122,8 @@ body {
     position: absolute;
     margin-top: 10px;
     margin-left: 15px;
+}
+
+.fa-circle-plus {
+    margin-right: 0.5em;
 }
