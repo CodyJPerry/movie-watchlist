@@ -44,12 +44,14 @@ body {
 .section-search {
     display: flex;
     justify-content: center;
+    margin-top: -25px;
 }
 
 .section-search input {
     width: 25.65em;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
+    margin-right: -4px;
 }
 
 .section-search button {
@@ -61,8 +63,8 @@ body {
 .section-search input,
 .section-search button {
     height: 3em;
+    border: 0.5px solid rgba(0, 0, 0, .4);
 }
-
 
 .section-results {
     background: var(--primary-gray);
@@ -71,6 +73,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: -19px;
 }
 
 /* Typography Styles */
