@@ -41,6 +41,29 @@ body {
     min-height: 100vh;
 }
 
+.section-search {
+    display: flex;
+    justify-content: center;
+}
+
+.section-search input {
+    width: 25.65em;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.section-search button {
+    width: 9em;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.section-search input,
+.section-search button {
+    height: 3em;
+}
+
+
 .section-results {
     background: var(--primary-gray);
     min-height: 60vh;
