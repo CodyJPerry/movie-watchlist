@@ -52,6 +52,8 @@ body {
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
     margin-right: -4px;
+    padding-left: 50px;
+    font-weight: 500;
 }
 
 .section-search button {
@@ -63,7 +65,7 @@ body {
 .section-search input,
 .section-search button {
     height: 3em;
-    border: 0.5px solid rgba(0, 0, 0, .4);
+    border: 0.5px solid rgba(0, 0, 0, .3);
 }
 
 .section-results {
@@ -100,6 +102,13 @@ body {
 }
 
 /* Icon Styling */
-.fa-film {
+.fa-film,
+.fa-magnifying-glass {
     color: var(--secondary-gray)
+}
+
+.fa-magnifying-glass {
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 15px;
 }
