@@ -5,6 +5,8 @@
     --secondary-gray: #c4c4c4;
     --button-color: #374151;
     --section-text: #363636;
+    --details-text: #111827;
+    --search-result-text: #6B7280;
     --star: #FEC654;
     --white: #ffffff;
 }
@@ -81,6 +83,7 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: -19px;
+    overflow-y: auto;
 }
 
 /* Search Result */
@@ -111,14 +114,42 @@ body {
     position: relative;
 }
 
+.search-result-details-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 1.2em;
+}
+
 .search-result-rating {
     position: absolute;
     right: 0;
     top: 0;
 }
 
+.search-result-details-wrapper .duration,
+.search-result-details-wrapper .genre,
+.search-result-details-wrapper .watchlist-btn {
+    font-size: 1.2em;
+    color: var(--details-text);
+}
+
+.search-result-details-wrapper .duration,
+.search-result-details-wrapper .genre {
+    margin-right: 1.9em;
+}
+
+.search-result-details-wrapper .watchlist-btn .fa-circle-plus {
+    margin-right: 0.3em;
+}
+
 .search-result-description {
     margin-left: 2.1em;
+}
+
+.search-result-text {
+    color: var(--search-result-text);
+    font-size: 1.4rem;
+    line-height: 1.6;
 }
 
 /* Typography Styles */

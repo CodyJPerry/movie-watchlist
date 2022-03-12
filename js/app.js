@@ -36,12 +36,12 @@ formEl.addEventListener('submit', (event) => {
                             <div class="search-result-description">
                                 <div class="search-result-title-wrapper">
                                     <h3 class="search-result-title">${movie.Title}</h3>
-                                    <span><i class="fa-solid fa-star"></i>${movie.imdbRating}</span>
+                                    <span class="search-result-rating"><i class="fa-solid fa-star"></i>${movie.imdbRating}</span>
                                 </div>
                                 <div class="search-result-details-wrapper">
-                                    <span>${movie.Runtime}</span>
-                                    <span>${movie.Genre}</span>
-                                    <span><i class="fa-solid fa-circle-plus"></i> Watchlist</span>
+                                    <span class="duration">${movie.Runtime}</span>
+                                    <span class="genre">${movie.Genre}</span>
+                                    <span class="watchlist-btn"><i class="fa-solid fa-circle-plus"></i>Watchlist</span>
                                 </div>
                                 <p class="search-result-text">${movie.Plot}</p>
                             </div>
