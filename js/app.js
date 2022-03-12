@@ -53,6 +53,9 @@ formEl.addEventListener('submit', (event) => {
         }
     })
 
+    // Add overflow property 
+    document.querySelector('.section-results-wrapper').style.overflow = 'auto'
+
     // Reset our search input
     document.querySelector('.section-search input').value = ""
 })

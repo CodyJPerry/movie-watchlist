@@ -51,6 +51,8 @@ body {
     display: flex;
     justify-content: center;
     margin-top: -25px;
+    position: relative;
+    z-index: 10;
 }
 
 .section-search input {
@@ -67,6 +69,7 @@ body {
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
     color: var(--button-color);
+    cursor: pointer;
 }
 
 .section-search input,
@@ -82,8 +85,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: -19px;
-    overflow-y: auto;
 }
 
 /* Search Result */
@@ -140,6 +141,7 @@ body {
 
 .search-result-details-wrapper .watchlist-btn .fa-circle-plus {
     margin-right: 0.3em;
+    cursor: pointer;
 }
 
 .search-result-description {
@@ -150,6 +152,11 @@ body {
     color: var(--search-result-text);
     font-size: 1.4rem;
     line-height: 1.6;
+}
+
+.section-results-wrapper {
+    height: 60em;
+    margin-top: -19px;
 }
 
 /* Typography Styles */
