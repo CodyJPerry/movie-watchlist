@@ -82,6 +82,16 @@ body {
     margin-top: -19px;
 }
 
+/* Search Result */
+.search-result {
+    display: flex;
+}
+
+.search-result-img img {
+    width: 9.9em;
+    height: 14.741em;
+}
+
 /* Typography Styles */
 .section-title,
 .section-watchlist {

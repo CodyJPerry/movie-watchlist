@@ -23,12 +23,36 @@ formEl.addEventListener('submit', (event) => {
     fetch (`${baseUrl}?s=${searchQuery}&apikey=${apiKey}`)
     .then(response => response.json())
     .then(data => {
-        console.log(data)
         for (let i = 0; i < data.Search.length; i++) {
             // Get more detailed movie information
             fetch(`${baseUrl}?t=${data.Search[i].Title.toLowerCase()}&apikey=${apiKey}`)
                 .then(response => response.json())
-                .then(movie => console.log(movie))
+                .then(movie => {
+                    searchResultHtml += `
+                        <div class="search-result">
+                            <div class="search-result-img">
+                                <img src="${movie.Poster}" alt="${movie.Title}">
+                            </div>
+                            <div class="search-result-description">
+                                <div class="search-result-title-wrapper">
+                                    <h3 class="search-result-title">${movie.Title}</h3>
+                                    <span><i class="fa-solid fa-star"></i>${movie.imdbRating}</span>
+                                </div>
+                                <div class="search-result-details-wrapper">
+                                    <span>${movie.Runtime}</span>
+                                    <span>${movie.Genre}</span>
+                                    <span><i class="fa-solid fa-circle-plus"></i> Watchlist</span>
+                                </div>
+                                <p class="search-result-text">${movie.Plot}</p>
+                            </div>
+                        </div>
+                `
+                // Let's build the string and update our results section of the DOM
+                searchResultsEl.innerHTML = searchResultHtml
+                })
         }
     })
+
+    // Reset our search input
+    document.querySelector('.section-search input').value = ""
 })
