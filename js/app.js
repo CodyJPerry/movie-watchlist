@@ -11,10 +11,12 @@ const movieList = []
 const localStorageWatchList = []
 let myWatchlist = []
 let searchResultObj = {}
+let watchListHtml = ""
 
 // Store Our references to the DOM
 const formEl = document.querySelector('.section-search form')
 const searchResultsEl = document.querySelector('.section-results')
+const watchlistWrapperEl = document.querySelector('.watchlist-wrapper')
 
 // Event Listeners
 formEl.addEventListener('submit', (event) => {
@@ -39,7 +41,8 @@ formEl.addEventListener('submit', (event) => {
                             title: movie.Title,
                             runtime: movie.Runtime,
                             genre: movie.Genre,
-                            plot: movie.Plot
+                            plot: movie.Plot,
+                            rating: movie.imdbRating
                     }
                     movieList.push(searchResultObj)
 
@@ -72,16 +75,12 @@ formEl.addEventListener('submit', (event) => {
                         // We need to add an object with the respective properties into local storage
                         let searchResultTitle = watchlistBtn.parentElement.previousElementSibling.firstElementChild
                         movieList.forEach((movieListItem) => {
-                            if (searchResultTitle.textContent.toLowerCase() === movieListItem.title.toLowerCase())
-                            localStorageWatchList.push(movieListItem)
+                            if (searchResultTitle.textContent.toLowerCase() === movieListItem.title.toLowerCase()) {
+                                localStorageWatchList.push(movieListItem)
+                            }
                         })
                         // Add to localstorage
                         window.localStorage.setItem('myWatchlist', JSON.stringify(localStorageWatchList))
-                        
-                        // Get our localstorage array ready for use
-                        myWatchlist =  JSON.parse(window.localStorage.getItem('myWatchlist'))
-                        console.log(myWatchlist)
-
                     })
                 })
             })
@@ -93,4 +92,29 @@ formEl.addEventListener('submit', (event) => {
 
     // Reset our search input
     document.querySelector('.section-search input').value = ""
+})
+
+// Parse the objects in the array that need added to our watchlist
+JSON.parse(window.localStorage.getItem('myWatchlist')).forEach((watchListItem) => {
+    watchListHtml += `
+        <div class="search-result">
+            <div class="search-result-img">
+                <img src="${watchListItem.imgSrc}" alt="${watchListItem.title}">
+            </div>
+            <div class="search-result-description">
+                <div class="search-result-title-wrapper">
+                    <h3 class="search-result-title">${watchListItem.title}</h3>
+                    <span class="search-result-rating"><i class="fa-solid fa-star"></i>${watchListItem.rating}</span>
+                </div>
+                <div class="search-result-details-wrapper">
+                    <span class="duration">${watchListItem.runtime}</span>
+                    <span class="genre">${watchListItem.genre}</span>
+                    <span class="watchlist-btn"><i class="fa-solid fa-circle-plus"></i>Watchlist</span>
+                </div>
+                <p class="search-result-text">${watchListItem.plot}</p>
+            </div>
+        </div>
+    `
+    watchlistWrapperEl.innerHTML = watchListHtml
+
 })
