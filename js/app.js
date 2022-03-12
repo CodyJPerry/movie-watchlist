@@ -7,6 +7,11 @@
 // Build our Search query
 const baseUrl = "http://www.omdbapi.com/"
 
+const movieList = []
+const localStorageWatchList = []
+let myWatchlist = []
+let searchResultObj = {}
+
 // Store Our references to the DOM
 const formEl = document.querySelector('.section-search form')
 const searchResultsEl = document.querySelector('.section-results')
@@ -28,6 +33,16 @@ formEl.addEventListener('submit', (event) => {
             fetch(`${baseUrl}?t=${data.Search[i].Title.toLowerCase()}&apikey=${apiKey}`)
                 .then(response => response.json())
                 .then(movie => {
+                    // Create our own object with values and add it to our array 
+                    searchResultObj = {
+                        imgSrc: movie.Poster,
+                            title: movie.Title,
+                            runtime: movie.Runtime,
+                            genre: movie.Genre,
+                            plot: movie.Plot
+                    }
+                    movieList.push(searchResultObj)
+
                     searchResultHtml += `
                         <div class="search-result">
                             <div class="search-result-img">
@@ -49,7 +64,27 @@ formEl.addEventListener('submit', (event) => {
                 `
                 // Let's build the string and update our results section of the DOM
                 searchResultsEl.innerHTML = searchResultHtml
+
+                // We want to add an event listener to each button as it gets created
+                let watchlistBtnEls = document.querySelectorAll('.watchlist-btn')
+                watchlistBtnEls.forEach((watchlistBtn) => {
+                    watchlistBtn.addEventListener('click', (event) => {
+                        // We need to add an object with the respective properties into local storage
+                        let searchResultTitle = watchlistBtn.parentElement.previousElementSibling.firstElementChild
+                        movieList.forEach((movieListItem) => {
+                            if (searchResultTitle.textContent.toLowerCase() === movieListItem.title.toLowerCase())
+                            localStorageWatchList.push(movieListItem)
+                        })
+                        // Add to localstorage
+                        window.localStorage.setItem('myWatchlist', JSON.stringify(localStorageWatchList))
+                        
+                        // Get our localstorage array ready for use
+                        myWatchlist =  JSON.parse(window.localStorage.getItem('myWatchlist'))
+                        console.log(myWatchlist)
+
+                    })
                 })
+            })
         }
     })
 
