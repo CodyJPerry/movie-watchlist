@@ -96,9 +96,12 @@ body {
     border-bottom: 1px solid rgba(0, 0, 0, .1);
 }
 
-.search-result:first-child,
-.watchlist-item:first-child {
+.search-result:first-child {
     margin-top: 4.4em;
+}
+
+.watchlist-item:first-child {
+    margin-top: 2em;
 }
 
 .search-result:last-child,
