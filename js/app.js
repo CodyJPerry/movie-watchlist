@@ -6,9 +6,8 @@
 
 // Build our Search query
 const baseUrl = "http://www.omdbapi.com/"
-
 const movieList = []
-const localStorageWatchList = []
+let localStorageWatchList = []
 let myWatchlist = []
 let searchResultObj = {}
 let watchListHtml = ""
@@ -16,7 +15,7 @@ let watchListHtml = ""
 // Store Our references to the DOM
 const formEl = document.querySelector('.section-search form')
 const searchResultsEl = document.querySelector('.section-results')
-const watchlistWrapperEl = document.querySelector('.watchlist-wrapper')
+const watchlistWrapperEl = document.querySelector('.watchlist-results')
 
 // Event Listeners
 formEl.addEventListener('submit', (event) => {
@@ -76,11 +75,23 @@ formEl.addEventListener('submit', (event) => {
                         let searchResultTitle = watchlistBtn.parentElement.previousElementSibling.firstElementChild
                         movieList.forEach((movieListItem) => {
                             if (searchResultTitle.textContent.toLowerCase() === movieListItem.title.toLowerCase()) {
-                                localStorageWatchList.push(movieListItem)
+                                // When our localstorage key exists, we want to push our localstorage list
+                                if (localStorage.getItem('myWatchList') === null) {
+                                    console.error('This local storage item does not exist.')
+                                } else {
+                                    localStorageWatchList = JSON.parse(localStorage.getItem("myWatchList"))
+                                    localStorageWatchList.push({
+                                        imgSrc: movieListItem.imgSrc,
+                                        title: movieListItem.title,
+                                        runtime: movieListItem.runtime,
+                                        genre: movieListItem.genre,
+                                        plot: movieListItem.plot,
+                                        rating: movieListItem.rating
+                                    })
+                                    localStorage.setItem("myWatchList", JSON.stringify(localStorageWatchList));
+                                }
                             }
                         })
-                        // Add to localstorage
-                        window.localStorage.setItem('myWatchlist', JSON.stringify(localStorageWatchList))
                     })
                 })
             })
@@ -94,27 +105,37 @@ formEl.addEventListener('submit', (event) => {
     document.querySelector('.section-search input').value = ""
 })
 
-// Parse the objects in the array that need added to our watchlist
-JSON.parse(window.localStorage.getItem('myWatchlist')).forEach((watchListItem) => {
-    watchListHtml += `
-        <div class="search-result">
-            <div class="search-result-img">
-                <img src="${watchListItem.imgSrc}" alt="${watchListItem.title}">
-            </div>
-            <div class="search-result-description">
-                <div class="search-result-title-wrapper">
-                    <h3 class="search-result-title">${watchListItem.title}</h3>
-                    <span class="search-result-rating"><i class="fa-solid fa-star"></i>${watchListItem.rating}</span>
+// renderWatchList functionality
+// const renderWatchList = () => {
+    // Parse the objects in the array that need added to our watchlist
+    JSON.parse(localStorage.getItem('myWatchlist')).forEach((watchListItem) => {
+        watchListHtml += `
+            <div class="watchlist-item">
+                <div class="watchlist-item-img">
+                    <img src="${watchListItem.imgSrc}" alt="${watchListItem.title}">
                 </div>
-                <div class="search-result-details-wrapper">
-                    <span class="duration">${watchListItem.runtime}</span>
-                    <span class="genre">${watchListItem.genre}</span>
-                    <span class="watchlist-btn"><i class="fa-solid fa-circle-plus"></i>Watchlist</span>
+                <div class="watchlist-item-description">
+                    <div class="watchlist-item-title-wrapper">
+                        <h3 class="watchlist-item-title">${watchListItem.title}</h3>
+                        <span class="watchlist-item-rating"><i class="fa-solid fa-star"></i>${watchListItem.rating}</span>
+                    </div>
+                    <div class="watchlist-item-details-wrapper">
+                        <span class="duration">${watchListItem.runtime}</span>
+                        <span class="genre">${watchListItem.genre}</span>
+                        <span class="watchlist-btn"><i class="fa-solid fa-circle-minus"></i></i>Remove</span>
+                    </div>
+                    <p class="watchlist-item-text">${watchListItem.plot}</p>
                 </div>
-                <p class="search-result-text">${watchListItem.plot}</p>
             </div>
-        </div>
-    `
-    watchlistWrapperEl.innerHTML = watchListHtml
+        ` 
+        watchlistWrapperEl.innerHTML = watchListHtml 
+    })
 
-})
+    console.log(watchListHtml)
+// }
+
+// renderWatchList()
+
+// Check if localstorage exists
+
+// We need to fix local storage from being completetly replaced each time to adding on to it

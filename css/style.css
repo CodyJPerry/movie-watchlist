@@ -78,7 +78,7 @@ body {
     border: 0.5px solid rgba(0, 0, 0, .3);
 }
 
-.section-results {
+.section-results, .watchlist-results {
     background: var(--primary-gray);
     min-height: 60vh;
     display: flex;
@@ -88,40 +88,47 @@ body {
 }
 
 /* Search Result */
-.search-result {
+.search-result,
+.watchlist-item {
     display: flex;
     padding: 2.159em 0;
     width: 46.2em;
     border-bottom: 1px solid rgba(0, 0, 0, .1);
 }
 
-.search-result:first-child {
+.search-result:first-child,
+.watchlist-item:first-child {
     margin-top: 4.4em;
 }
 
-.search-result:last-child {
+.search-result:last-child,
+.watchlist-item:last-child {
     border-bottom: none;
 }
 
-.search-result-img img {
+.search-result-img img,
+.watchlist-item-img img {
     width: 9.9em;
     height: 14.741em;
 }
 
-.search-result-title-wrapper {
+.search-result-title-wrapper,
+.watchlist-item-title-wrapper {
     display: flex;
     margin-bottom: 1.3em;
     align-items: center;
     position: relative;
 }
 
-.search-result-details-wrapper {
+.search-result-details-wrapper,
+.watchlist-item-details-wrapper {
     display: flex;
     justify-content: flex-start;
     margin-bottom: 1.2em;
 }
 
-.search-result-rating {
+.search-result-rating,
+.watchlist-item-rating {
     position: absolute;
     right: 0;
     top: 0;
@@ -129,13 +136,18 @@ body {
 
 .search-result-details-wrapper .duration,
 .search-result-details-wrapper .genre,
-.search-result-details-wrapper .watchlist-btn {
+.search-result-details-wrapper .watchlist-btn,
+.watchlist-item-details-wrapper .duration,
+.watchlist-item-details-wrapper .genre,
+.watchlist-item-details-wrapper .watchlist-btn {
     font-size: 1.2em;
     color: var(--details-text);
 }
 
 .search-result-details-wrapper .duration,
-.search-result-details-wrapper .genre {
+.watchlist-item-details-wrapper .duration,
+.search-result-details-wrapper .genre,
+.watchlist-item-details-wrapper .genre {
     margin-right: 1.9em;
 }
 
@@ -144,17 +156,20 @@ body {
     cursor: pointer;
 }
 
-.search-result-description {
+.search-result-description,
+.watchlist-item-description {
     margin-left: 2.1em;
 }
 
-.search-result-text {
+.search-result-text,
+.watchlist-item-text {
     color: var(--search-result-text);
     font-size: 1.4rem;
     line-height: 1.6;
 }
 
-.section-results-wrapper {
+.section-results-wrapper,
+.watchlist-wrapper {
     height: 60em;
     margin-top: -19px;
 }
@@ -177,12 +192,14 @@ body {
 }
 
 .search-result-title,
+.watchlist-item-title,
 .fa-film-text {
     font-size: 1.8rem;
     font-weight: 700;
 }
 
-.search-result-title {
+.search-result-title,
+.watchlist-item-title {
     margin-right: 0.8em;
 }
 
@@ -210,7 +227,8 @@ body {
     margin-left: 15px;
 }
 
-.fa-circle-plus {
+.fa-circle-plus,
+.fa-circle-minus {
     margin-right: 0.5em;
 }
 
