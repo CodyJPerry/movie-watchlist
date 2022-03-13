@@ -1,0 +1,50 @@
+/* Dark Mode Styles
+ * These styles will only apply with dark mode turned on.
+*/
+
+.search-result-details-wrapper .duration, 
+.search-result-details-wrapper .genre, 
+.search-result-details-wrapper .watchlist-btn, 
+.watchlist-item-details-wrapper .duration, 
+.watchlist-item-details-wrapper .genre, 
+.watchlist-item-details-wrapper .watchlist-btn,
+.search-result-title-wrapper,
+.search-result-details-wrapper,
+.watchlist-item-title-wrapper,
+.watchlist-item-details-wrapper,
+.section-search button,
+.section-text { 
+    color: #ffffff;
+}
+
+.section-results, .watchlist-results {
+    background: #121212;
+}
+
+.fa-film-text, 
+.fa-film,
+.error-text {
+    color: #2E2E2F;
+}
+
+.fa-magnifying-glass {
+    color: #9CA3AF;
+}
+
+.section-search input {
+    background: #2E2E2F
+}
+
+.section-search input,
+.search-result-text,
+.watchlist-item-text {
+    color: #A5A5A5;
+}
+
+.section-search button {
+    background: #4B4B4B;
+}
+
+.search-result, .watchlist-item {
+    border-bottom: 1px solid #E5E7EB
+}
