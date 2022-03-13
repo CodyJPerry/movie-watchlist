@@ -1,6 +1,6 @@
 // Build our Search query
 const baseUrl = "http://www.omdbapi.com/"
-
+const apiKey = config.APIKEY
 const movieList = []
 let localStorageWatchList = []
 let myWatchlist = []
