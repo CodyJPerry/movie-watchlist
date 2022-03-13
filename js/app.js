@@ -26,92 +26,102 @@ if (formEl) {
         fetch (`${baseUrl}?s=${searchQuery}&apikey=${apiKey}`)
         .then(response => response.json())
         .then(data => {
-            for (let i = 0; i < data.Search.length; i++) {
-                // Get more detailed movie information
-                fetch(`${baseUrl}?t=${data.Search[i].Title.toLowerCase()}&apikey=${apiKey}`)
-                    .then(response => response.json())
-                    .then(movie => {
-                        // Create our own object with values and add it to our array 
-                        searchResultObj = {
-                            imgSrc: movie.Poster,
-                                title: movie.Title,
-                                runtime: movie.Runtime,
-                                genre: movie.Genre,
-                                plot: movie.Plot,
-                                rating: movie.imdbRating
-                        }
-                        movieList.push(searchResultObj)
-    
-                        searchResultHtml += `
-                            <div class="search-result">
-                                <div class="search-result-img">
-                                    <img src="${movie.Poster}" alt="${movie.Title}">
-                                </div>
-                                <div class="search-result-description">
-                                    <div class="search-result-title-wrapper">
-                                        <h3 class="search-result-title">${movie.Title}</h3>
-                                        <span class="search-result-rating"><i class="fa-solid fa-star"></i>${movie.imdbRating}</span>
+            if (data.Response === 'True') {
+                for (let i = 0; i < data.Search.length; i++) {
+                    // Get more detailed movie information
+                    fetch(`${baseUrl}?t=${data.Search[i].Title.toLowerCase()}&apikey=${apiKey}`)
+                        .then(response => response.json())
+                        .then(movie => {
+                            // Create our own object with values and add it to our array 
+                            searchResultObj = {
+                                imgSrc: movie.Poster,
+                                    title: movie.Title,
+                                    runtime: movie.Runtime,
+                                    genre: movie.Genre,
+                                    plot: movie.Plot,
+                                    rating: movie.imdbRating
+                            }
+                            movieList.push(searchResultObj)
+        
+                            searchResultHtml += `
+                                <div class="search-result">
+                                    <div class="search-result-img">
+                                        <img src="${movie.Poster}" alt="${movie.Title}">
                                     </div>
-                                    <div class="search-result-details-wrapper">
-                                        <span class="duration">${movie.Runtime}</span>
-                                        <span class="genre">${movie.Genre}</span>
-                                        <span class="watchlist-add-btn"><i class="fa-solid fa-circle-plus"></i>Watchlist</span>
+                                    <div class="search-result-description">
+                                        <div class="search-result-title-wrapper">
+                                            <h3 class="search-result-title">${movie.Title}</h3>
+                                            <span class="search-result-rating"><i class="fa-solid fa-star"></i>${movie.imdbRating}</span>
+                                        </div>
+                                        <div class="search-result-details-wrapper">
+                                            <span class="duration">${movie.Runtime}</span>
+                                            <span class="genre">${movie.Genre}</span>
+                                            <span class="watchlist-add-btn"><i class="fa-solid fa-circle-plus"></i>Watchlist</span>
+                                        </div>
+                                        <p class="search-result-text">${movie.Plot}</p>
                                     </div>
-                                    <p class="search-result-text">${movie.Plot}</p>
                                 </div>
-                            </div>
-                    `
-                    // Let's build the string and update our results section of the DOM
-                    searchResultsEl.innerHTML = searchResultHtml
-    
-                    // We want to add an event listener to each button as it gets created
-                    let watchlistAddBtnEls = document.querySelectorAll('.watchlist-add-btn')
-                    watchlistAddBtnEls.forEach((watchlistAddBtn) => {
-                        watchlistAddBtn.addEventListener('click', (event) => {
-                            // We need to add an object with the respective properties into local storage
-                            let searchResultTitle = watchlistAddBtn.parentElement.previousElementSibling.firstElementChild
-                            movieList.forEach((movieListItem) => {
-                                if (searchResultTitle.textContent.toLowerCase() === movieListItem.title.toLowerCase()) {
-                                    /**
-                                     * We need to check for cases where user has not used app for the first time and 
-                                     * localstorage key does not exist
-                                     */
-                                    if (localStorage.getItem('myWatchList') === null) {
-                                        localStorage.setItem("myWatchList", JSON.stringify(localStorageWatchList));
-                                        localStorageWatchList.push({
-                                            imgSrc: movieListItem.imgSrc,
-                                            title: movieListItem.title,
-                                            runtime: movieListItem.runtime,
-                                            genre: movieListItem.genre,
-                                            plot: movieListItem.plot,
-                                            rating: movieListItem.rating
-                                        })
-                                        localStorage.setItem("myWatchList", JSON.stringify(localStorageWatchList));
-                                    } else {
-                                        localStorageWatchList = JSON.parse(localStorage.getItem("myWatchList"))
-                                        localStorageWatchList.push({
-                                            imgSrc: movieListItem.imgSrc,
-                                            title: movieListItem.title,
-                                            runtime: movieListItem.runtime,
-                                            genre: movieListItem.genre,
-                                            plot: movieListItem.plot,
-                                            rating: movieListItem.rating
-                                        })
-                                        localStorage.setItem("myWatchList", JSON.stringify(localStorageWatchList));
+                        `
+                        // Let's build the string and update our results section of the DOM
+                        searchResultsEl.innerHTML = searchResultHtml
+        
+                        // We want to add an event listener to each button as it gets created
+                        let watchlistAddBtnEls = document.querySelectorAll('.watchlist-add-btn')
+                        watchlistAddBtnEls.forEach((watchlistAddBtn) => {
+                            watchlistAddBtn.addEventListener('click', (event) => {
+                                // We need to add an object with the respective properties into local storage
+                                let searchResultTitle = watchlistAddBtn.parentElement.previousElementSibling.firstElementChild
+                                movieList.forEach((movieListItem) => {
+                                    if (searchResultTitle.textContent.toLowerCase() === movieListItem.title.toLowerCase()) {
+                                        /**
+                                         * We need to check for cases where user has not used app for the first time and 
+                                         * localstorage key does not exist
+                                         */
+                                        if (localStorage.getItem('myWatchList') === null) {
+                                            localStorage.setItem("myWatchList", JSON.stringify(localStorageWatchList));
+                                            localStorageWatchList.push({
+                                                imgSrc: movieListItem.imgSrc,
+                                                title: movieListItem.title,
+                                                runtime: movieListItem.runtime,
+                                                genre: movieListItem.genre,
+                                                plot: movieListItem.plot,
+                                                rating: movieListItem.rating
+                                            })
+                                            localStorage.setItem("myWatchList", JSON.stringify(localStorageWatchList));
+                                        } else {
+                                            localStorageWatchList = JSON.parse(localStorage.getItem("myWatchList"))
+                                            localStorageWatchList.push({
+                                                imgSrc: movieListItem.imgSrc,
+                                                title: movieListItem.title,
+                                                runtime: movieListItem.runtime,
+                                                genre: movieListItem.genre,
+                                                plot: movieListItem.plot,
+                                                rating: movieListItem.rating
+                                            })
+                                            localStorage.setItem("myWatchList", JSON.stringify(localStorageWatchList));
+                                        }
                                     }
-                                }
+                                })
                             })
                         })
                     })
-                })
+                }
+
+                // Add overflow property 
+                document.querySelector('.section-results-wrapper').style.overflow = 'auto'
+            
+                // Reset our search input
+                document.querySelector('.section-search input').value = ""
+
+            } else {
+                // Display error message to user
+                searchResultsEl.innerHTML = `
+                    <div class="error-message-wrapper">
+                        <span class="error-text">Unable to find what you’re looking for. Please try another search.</span>
+                    </div>
+                `
             }
         })
-    
-        // Add overflow property 
-        document.querySelector('.section-results-wrapper').style.overflow = 'auto'
-    
-        // Reset our search input
-        document.querySelector('.section-search input').value = ""
     })
 }
 

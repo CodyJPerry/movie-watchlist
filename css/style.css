@@ -197,7 +197,8 @@ body {
 
 .search-result-title,
 .watchlist-item-title,
-.fa-film-text {
+.fa-film-text,
+.error-text {
     font-size: 1.8rem;
     font-weight: 700;
 }
@@ -207,7 +208,8 @@ body {
     margin-right: 0.8em;
 }
 
-.fa-film-text {
+.fa-film-text,
+.error-text {
     color: var(--secondary-gray);
     margin-top: 0.5em;
 }
@@ -312,4 +314,11 @@ body {
   
   .slider.round:before {
     border-radius: 50%;
+  }
+
+  /* Error message */
+  .error-message-wrapper {
+    text-align: center;
+    padding: 0 9em;
+    line-height: 1.4;
   }
