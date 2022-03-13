@@ -11,6 +11,7 @@ let watchListHtml = ""
 const formEl = document.querySelector('.section-search form')
 const searchResultsEl = document.querySelector('.section-results')
 const watchlistWrapperEl = document.querySelector('.watchlist-results')
+const toggleEl = document.querySelector('.slider')
 
 // Check that our references to the DOM exist
 if (formEl) {
@@ -164,3 +165,24 @@ let watchlistRemoveBtnEls = document.querySelectorAll('.watchlist-remove-btn')
         watchListTitle.closest('.watchlist-item').remove();
     })
 })
+
+// Dark mode toggle functionality
+const enableDarkMode = () => {
+    toggleEl.addEventListener('click', () => {
+        // Setup new stylesheet to be added
+        let toggleWrapperEl = toggleEl.parentElement.parentElement
+        let linkElement = document.createElement('link')
+        linkElement.setAttribute('rel', 'stylesheet')
+        linkElement.setAttribute('href', 'css/dark-mode.css')
+
+        // Check for dark mode and add or remove stylesheet based on the condition
+        if (toggleWrapperEl.classList.contains('dark-mode')) {
+            toggleWrapperEl.classList.remove('dark-mode')
+            document.head.appendChild(linkElement)
+        } else if (!toggleWrapperEl.classList.contains('dark-mode')) {
+            toggleWrapperEl.classList.add('dark-mode')
+            document.head.removeChild(document.head.lastChild)
+        }
+    })
+}
+enableDarkMode()
