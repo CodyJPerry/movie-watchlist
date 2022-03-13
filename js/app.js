@@ -34,7 +34,7 @@ if (formEl) {
                         .then(movie => {
                             // Create our own object with values and add it to our array 
                             searchResultObj = {
-                                imgSrc: movie.Poster,
+                                    imgSrc: movie.Poster,
                                     title: movie.Title,
                                     runtime: movie.Runtime,
                                     genre: movie.Genre,
